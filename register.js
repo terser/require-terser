@@ -1,6 +1,5 @@
 const { addHook } = require("pirates");
-const terser = require(process.env.TERSER_PATH || "terser");
-const cloneDeep = require("lodash/cloneDeep");
+const compileSync = require('./compile-sync');
 
 if (global.__REQUIRE_TERSER__) {
   throw new Error("@terser/require-terser imported twice");
@@ -9,14 +8,11 @@ if (global.__REQUIRE_TERSER__) {
 global.__REQUIRE_TERSER__ = true;
 
 module.exports = config => {
-    const compile = (inputCode, filename) => {
-      const { error, code } = terser.minify(inputCode, cloneDeep(config));
-      if (error) throw error;
-      return code;
-    };
+  const compile = (inputCode, filename) =>
+    compileSync(inputCode, config)
 
-    addHook(compile, {
-      exts: [".js"],
-      ignoreNodeModules: false
-    });
+  addHook(compile, {
+    exts: [".js"],
+    ignoreNodeModules: false
+  });
 };

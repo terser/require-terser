@@ -4,7 +4,7 @@
   "description": "Require hook that minifies every file passed to it. Used for testing Terser.",
   "main": "register.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/terser/require-terser#readme",
   "dependencies": {
-    "lodash": "^4.17.15",
     "pirates": "^4.0.1",
     "terser": "^4.4.2"
   }
