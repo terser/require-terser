@@ -19,6 +19,7 @@ module.exports = (inputCode, config) => {
 
   return execFileSync('node', [], {
     encoding: 'utf-8',
-    input: nodeCode
+    input: nodeCode,
+    maxBuffer: 50 * 1024 * 1024
   });
 }
